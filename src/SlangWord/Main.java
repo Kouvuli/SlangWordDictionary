@@ -47,63 +47,63 @@ public class Main {
                         break;
                     }
                     case 4:{
-//                        Scanner scanner=new Scanner(System.in);
-//                        System.out.println("Nhap keyword moi:");
-//                        String keyword=scanner.nextLine();
-//                        SlangWord sw=dictionary.findBySlangWord(keyword);
-//                        if (sw!=null){
-//                            int sel = 0;
-//                            System.out.println("Tu da ton tai!");
-//                            System.out.println("Chon 1 de ghi de");
-//                            System.out.println("Chon 2 de ghi nghia moi");
-//                            System.out.println("Nhap lua chon:");
-//                            sel=scanner.nextInt();
-//                            switch (sel){
-//                                case 1:{
-//
-//                                    String newKeyword="";
-//                                    do{
-//                                        try{
-//                                            System.out.println("Nhap Slang Word:");
-//                                            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-//                                            newKeyword=br.readLine();
-//                                            if (dictionary.findBySlangWord(newKeyword)!=null){
-//                                                System.out.println("Keyword da ton tai!");
-//                                            }
-//
-//                                        }catch (IOException e){
-//
-//                                            e.printStackTrace();
-//                                        }
-//                                    }
-//                                    while(dictionary.findBySlangWord(newKeyword)!=null);
-//                                    Scanner newScanner=new Scanner(System.in);
-//                                    System.out.println("Nhap nghia moi:");
-//                                    sw.setWord(newKeyword);
-//                                    sw.setDefinition(newScanner.nextLine());
-//                                    break;
-//                                }
-//                                case 2:{
-//                                    System.out.println("Nhap nghia moi:");
-//                                    Scanner newScanner=new Scanner(System.in);
-//                                    String newDefinition=newScanner.nextLine();
-//                                    sw.setDefinition(newDefinition);
-//                                    break;
-//                                }
-//                                default:{
-//                                    System.out.println("Nhap sai lua chon");
-//                                    break;
-//                                }
-//                            }
-//                        }
-//                        else{
-//                            System.out.println("Nhap nghia moi:");
-//                            String newDefinition=scanner.nextLine();
-//                            SlangWord newSlangWord=new SlangWord(keyword,newDefinition);
-//                            dictionary.getSlangWordList().add(newSlangWord);
-//                        }
-//                        dictionary.findBySlangWord(keyword).printSlangWord();
-//                        break;
+                        Scanner scanner=new Scanner(System.in);
+                        System.out.println("Nhap keyword moi:");
+                        String keyword=scanner.nextLine();
+                        SlangWord sw=dictionary.findBySlangWord(keyword);
+                        if (sw!=null){
+                            int sel = 0;
+                            System.out.println("Tu da ton tai!");
+                            System.out.println("Chon 1 de ghi de");
+                            System.out.println("Chon 2 de ghi nghia moi");
+                            System.out.println("Nhap lua chon:");
+                            sel=scanner.nextInt();
+                            switch (sel){
+                                case 1:{
+
+                                    String newKeyword="";
+                                    do{
+                                        try{
+                                            System.out.println("Nhap Slang Word:");
+                                            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+                                            newKeyword=br.readLine();
+                                            if (dictionary.findBySlangWord(newKeyword)!=null){
+                                                System.out.println("Keyword da ton tai!");
+                                            }
+
+                                        }catch (IOException e){
+
+                                            e.printStackTrace();
+                                        }
+                                    }
+                                    while(dictionary.findBySlangWord(newKeyword)!=null);
+                                    Scanner newScanner=new Scanner(System.in);
+                                    System.out.println("Nhap nghia moi:");
+                                    sw.setWord(newKeyword);
+                                    sw.setDefinition(newScanner.nextLine());
+                                    break;
+                                }
+                                case 2:{
+                                    System.out.println("Nhap nghia moi:");
+                                    Scanner newScanner=new Scanner(System.in);
+                                    String newDefinition=newScanner.nextLine();
+                                    sw.setDefinition(newDefinition);
+                                    break;
+                                }
+                                default:{
+                                    System.out.println("Nhap sai lua chon");
+                                    break;
+                                }
+                            }
+                        }
+                        else{
+                            System.out.println("Nhap nghia moi:");
+                            String newDefinition=scanner.nextLine();
+                            SlangWord newSlangWord=new SlangWord(keyword,newDefinition);
+                            dictionary.getSlangWordList().add(newSlangWord);
+                        }
+                        dictionary.findBySlangWord(keyword).printSlangWord();
+                        break;
                     }
                     case 5:{
 //                        Scanner scanner=new Scanner(System.in);

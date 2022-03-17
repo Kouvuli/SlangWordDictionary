@@ -106,10 +106,10 @@ public class Main {
                         break;
                     }
                     case 5:{
-//                        Scanner scanner=new Scanner(System.in);
-//                        System.out.println("Nhap keyword:");
-//                        String keyword=scanner.nextLine();
-//                        dictionary.updateSlangWord(keyword);
+                        Scanner scanner=new Scanner(System.in);
+                        System.out.println("Nhap keyword:");
+                        String keyword=scanner.nextLine();
+                        dictionary.updateSlangWord(keyword);
 
 
                     }

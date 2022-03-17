@@ -1,30 +1,41 @@
 package Model;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
+import java.util.Vector;
 
 public class SlangWordList {
     List<SlangWord> list;
 
+    HistoryList historyList;
+
     public SlangWordList() {
         list=new ArrayList<>();
+        historyList=new HistoryList();
     }
 
-    public boolean findSlang(String word){
-        for (SlangWord sl:list) {
-            if (sl.getWord().equals(word)){
-                sl.printSlangWord();
-                return true;
+    public HistoryList getHistoryList() {
+        return historyList;
+    }
+    public List<SlangWord>getSlangWordList(){
+        return list;
+    }
+    public SlangWord findBySlangWord (String keyword){
+        for (SlangWord sw : list) {
+            if (sw.getWord().equals(keyword)) {
+                historyList.addHistory(sw);
+                return sw;
             }
         }
-        return false;
+        return null;
     }
-    public boolean isExist(String word){
-        if (findSlang(word)){
-            return true;
+    public void findByDefinition(String keyword) {
+        for (SlangWord sw : list) {
+            if (sw.getDefinition().contains(keyword)) {
+                sw.printSlangWord();
+            }
         }
-        return false;
     }
     public void readFile(String file_name)  {
         try{
@@ -33,6 +44,7 @@ public class SlangWordList {
             BufferedReader br = new BufferedReader(fr);
             String line;
             while ((line=br.readLine())!=null){
+
                 SlangWord sl=this.splitToSlangWord(line);
                 list.add(sl);
             }
@@ -44,6 +56,27 @@ public class SlangWordList {
             e.printStackTrace();
         }
     }
+//    public void updateSlangWord(String keyword){
+//        SlangWord sw = null;
+//        do{
+//            try{
+//                sw=this.findBySlangWord(keyword);
+//                if (this.findBySlangWord(keyword)!=null){
+//                    System.out.println("Keyword da ton tai!");
+//                }
+//                System.out.println("Nhap slang word moi:");
+//                BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+//                keyword=br.readLine();
+//            }catch (IOException e){
+//
+//                e.printStackTrace();
+//            }
+//        }while(sw!=null);
+//        Scanner newScanner=new Scanner(System.in);
+//        System.out.println("Nhap nghia moi:");
+//        sw.setWord(keyword);
+//        sw.setDefinition(newScanner.nextLine());
+//    }
     private SlangWord splitToSlangWord(String st)
     {
         String[] line = st.split("`");

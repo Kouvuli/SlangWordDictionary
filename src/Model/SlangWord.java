@@ -5,29 +5,30 @@ import java.io.*;
 
 public class SlangWord {
     String Word;
-    String Defination;
+    String Definition;
 
-    public SlangWord(String word, String defination) {
-        Word=word;
-        Defination=defination;
-    }
-
-    public void setWord(String word) {
+    public SlangWord(String word, String definition) {
         Word = word;
-    }
-
-    public void setDefination(String defination) {
-        Defination = defination;
+        Definition = definition;
     }
 
     public String getWord() {
         return Word;
     }
 
-    public String getDefination() {
-        return Defination;
+    public String getDefinition() {
+        return Definition;
     }
+
+    public void setWord(String word) {
+        Word = word;
+    }
+
+    public void setDefinition(String definition) {
+        Definition = definition;
+    }
+
     public void printSlangWord(){
-        System.out.println(Word+" "+Defination);
+        System.out.println(Word+"-"+Definition);
     }
 }

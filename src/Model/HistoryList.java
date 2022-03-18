@@ -5,20 +5,32 @@ import java.util.List;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
 public class HistoryList {
-    List<History> list;
-
+    List<History> wordList;
+    List<History> definitionList;
     public HistoryList() {
-        this.list = new ArrayList<>();
+        this.wordList = new ArrayList<>();
+        this.definitionList = new ArrayList<>();
     }
-    public void addHistory(SlangWord sw){
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+    public void addWordHistory(String s){
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
         LocalDateTime now = LocalDateTime.now();
-        History history=new History(sw,now);
-        list.add(history);
+        History his=new History(s,dtf.format(now));
+        wordList.add(his);
+    }
+    public void addDefHistory(String keyword,List<String> str){
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        LocalDateTime now = LocalDateTime.now();
+        History his=new History(keyword+":"+String.join("| ",str),dtf.format(now));
+        definitionList.add(his);
     }
     public void printHistoryList(){
-        for (History his:list) {
-            his.printHistory();
+        System.out.println("Keywords:");
+        for (History word: wordList) {
+            word.printHistory();
+        }
+        System.out.println("\n\n\nDefinitions:");
+        for (History word: definitionList) {
+            word.printHistory();
         }
     }
 }

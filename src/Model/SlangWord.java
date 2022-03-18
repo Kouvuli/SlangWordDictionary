@@ -29,6 +29,6 @@ public class SlangWord {
     }
 
     public void printSlangWord(){
-        System.out.println(Word+"-"+Definition);
+        System.out.println(Word+":"+Definition);
     }
 }

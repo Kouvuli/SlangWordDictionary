@@ -2,33 +2,22 @@ package Model;
 
 
 import java.io.*;
+import java.util.Map;
 
 public class SlangWord {
-    String Word;
-    String Definition;
+    Map.Entry<String,SlangDefinition> slangWord;
 
-    public SlangWord(String word, String definition) {
-        Word = word;
-        Definition = definition;
+    public SlangWord(Map.Entry<String, SlangDefinition> slangWord) {
+        this.slangWord = slangWord;
     }
 
-    public String getWord() {
-        return Word;
+    public Map.Entry<String, SlangDefinition> getSlangWord() {
+        return slangWord;
     }
-
-    public String getDefinition() {
-        return Definition;
+    public SlangDefinition getVal(){
+        return slangWord.getValue();
     }
-
-    public void setWord(String word) {
-        Word = word;
-    }
-
-    public void setDefinition(String definition) {
-        Definition = definition;
-    }
-
-    public void printSlangWord(){
-        System.out.println(Word+":"+Definition);
+    public void setSlangWord(Map.Entry<String, SlangDefinition> slangWord) {
+        this.slangWord = slangWord;
     }
 }

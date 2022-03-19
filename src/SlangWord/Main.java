@@ -110,7 +110,27 @@ public class Main {
                         }
                         break;
                     }
+                    case 5:{
+                        Scanner scanner=new Scanner(System.in);
+                        System.out.println("Nhap slang word muon edit:");
+                        String keyword=scanner.nextLine();
+                        dictionary.updateSlangWord(keyword);
+                        break;
 
+                    }
+                    case 6:{
+                        Scanner scanner=new Scanner(System.in);
+                        System.out.println("Nhap slang word muon xoa:");
+                        String keyword=scanner.nextLine();
+                        while (dictionary.findBySlangWord(keyword)==null){
+                            System.out.println("Slang word khong ton tai!");
+                            System.out.println("Nhap lai slang word:");
+                            Scanner sn=new Scanner(System.in);
+                            keyword=sn.nextLine();
+                        }
+                        dictionary.removeSlangWord(keyword);
+                        break;
+                    }
                 }
             }while (selection<=10&&selection>=1);
         }

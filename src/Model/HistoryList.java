@@ -5,8 +5,8 @@ import java.util.List;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
 public class HistoryList {
-    List<History> wordList;
-    List<History> definitionList;
+    private List<History> wordList;
+    private List<History> definitionList;
     public HistoryList() {
         this.wordList = new ArrayList<>();
         this.definitionList = new ArrayList<>();

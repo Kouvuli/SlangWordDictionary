@@ -89,14 +89,14 @@ public class SlangWordList {
             Map.Entry<String, SlangDefinition> sw= this.findBySlangWord(keyword);
             while(this.findBySlangWord(keyword)==null){
                 System.out.println("Keyword khong ton tai!");
-                System.out.println("Nhap slang word moi:");
+                System.out.print("Nhap slang word moi:");
                 BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
                 keyword=br.readLine();
             }
             int sel = 0;
             System.out.println("Chon 1 de ghi de");
             System.out.println("Chon 2 de ghi them nghia moi");
-            System.out.println("Nhap lua chon:");
+            System.out.print("Nhap lua chon:");
             Scanner h=new Scanner(System.in);
             sel=h.nextInt();
             switch (sel){
@@ -105,7 +105,7 @@ public class SlangWordList {
                     String newKeyword="";
                     do{
                         try{
-                            System.out.println("Nhap Slang Word:");
+                            System.out.print("Nhap Slang Word:");
                             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
                             newKeyword=br.readLine();
                             if (findBySlangWord(newKeyword)!=null && !newKeyword.toLowerCase().trim().equals(keyword.toLowerCase().trim())){
@@ -118,13 +118,13 @@ public class SlangWordList {
                     }
                     while(findBySlangWord(newKeyword)!=null &&!newKeyword.toLowerCase().trim().equals(keyword.toLowerCase().trim()));
                     Scanner newScanner=new Scanner(System.in);
-                    System.out.println("Nhap nghia moi:");
+                    System.out.print("Nhap nghia moi:");
                     removeSlangWord(keyword);
                     addNewSlangWord(newKeyword,newScanner.nextLine());
                     break;
                 }
                 case 2:{
-                    System.out.println("Nhap nghia moi:");
+                    System.out.print("Nhap nghia moi:");
                     Scanner newScanner=new Scanner(System.in);
                     String newDefinition=newScanner.nextLine();
                     sw.getValue().addDefinition(newDefinition);
@@ -140,6 +140,31 @@ public class SlangWordList {
         }
 
     }
+    public SlangWord getRandomSlangWord(){
+        Random generator = new Random();
+        List<String> keysAsArray = new ArrayList<String>(dictionary.keySet());
+
+        int randomNumber=generator.nextInt(keysAsArray.size());
+        String randomKey=keysAsArray.get(randomNumber);
+        SlangDefinition randomValue=dictionary.get(randomKey);
+        SlangWord slangWord=new SlangWord(randomKey,randomValue);
+        return slangWord;
+//        System.out.println(key+":"+randomValue.getListDefinitions());
+    }
+    public List<SlangWord> getRandomList(){
+        List<SlangWord> answersList=new ArrayList<>();
+        List<String> keysAsArray = new ArrayList<String>(dictionary.keySet());
+        List<SlangDefinition> definitionAsArray = new ArrayList<SlangDefinition>(dictionary.values());
+        for (int i=0;i<4;i++){
+            int r = (int)Math.floor(Math.random() * keysAsArray.size()) + 1;
+            String randomKey=keysAsArray.get(r);
+            SlangDefinition randomDefinition=definitionAsArray.get(r);
+            SlangWord sw=new SlangWord(randomKey,randomDefinition);
+            answersList.add(sw);
+        }
+        return answersList;
+    }
+
 //    private List<String> splitToSlangWord(String st,String word,SlangDefinition sd)
 //    {
 //        String[] line = st.split("`");

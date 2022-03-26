@@ -5,19 +5,27 @@ import java.io.*;
 import java.util.Map;
 
 public class SlangWord {
-    Map.Entry<String,SlangDefinition> slangWord;
+    private String word;
+    private SlangDefinition definition;
 
-    public SlangWord(Map.Entry<String, SlangDefinition> slangWord) {
-        this.slangWord = slangWord;
+    public SlangWord(String word, SlangDefinition definition) {
+        this.word = word;
+        this.definition = definition;
     }
 
-    public Map.Entry<String, SlangDefinition> getSlangWord() {
-        return slangWord;
+    public void setWord(String word) {
+        this.word = word;
     }
-    public SlangDefinition getVal(){
-        return slangWord.getValue();
+
+    public void setDefinition(SlangDefinition definition) {
+        this.definition = definition;
     }
-    public void setSlangWord(Map.Entry<String, SlangDefinition> slangWord) {
-        this.slangWord = slangWord;
+
+    public String getWord() {
+        return word;
+    }
+
+    public SlangDefinition getDefinition() {
+        return definition;
     }
 }

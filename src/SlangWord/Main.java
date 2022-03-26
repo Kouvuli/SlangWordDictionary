@@ -8,27 +8,23 @@ import java.io.BufferedReader;
 import java.io.Console;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
             SlangWordList dictionary=new SlangWordList();
             dictionary.readFile("slang.txt");
-
             int selection;
             do {
                 printMenu();
-                System.out.println("Nhap lua chon cua ban:");
+                System.out.print("Nhap lua chon cua ban:");
                 Scanner sc=new Scanner(System.in);
                 selection=sc.nextInt();
 
                 switch (selection){
                     case 1:{
                         Scanner scanner=new Scanner(System.in);
-                        System.out.println("Nhap slang word:");
+                        System.out.print("Nhap slang word:");
                         String keyword=scanner.nextLine();
                         Map.Entry<String, SlangDefinition> entry = dictionary.findBySlangWord(keyword);
                         if (entry!=null){
@@ -42,7 +38,7 @@ public class Main {
                     }
                     case 2:{
                         Scanner scanner=new Scanner(System.in);
-                        System.out.println("Nhap keyword:");
+                        System.out.print("Nhap keyword:");
                         String keyword=scanner.nextLine();
                         dictionary.findByDefinition(keyword);
                         break;
@@ -53,7 +49,7 @@ public class Main {
                     }
                     case 4:{
                         Scanner scanner=new Scanner(System.in);
-                        System.out.println("Nhap keyword moi:");
+                        System.out.print("Nhap keyword moi:");
                         String keyword=scanner.nextLine();
                         Map.Entry<String, SlangDefinition> sw=dictionary.findBySlangWord(keyword);
                         if (sw!=null){
@@ -61,7 +57,7 @@ public class Main {
                             System.out.println("Tu da ton tai!");
                             System.out.println("Chon 1 de ghi de");
                             System.out.println("Chon 2 de ghi nghia moi");
-                            System.out.println("Nhap lua chon:");
+                            System.out.print("Nhap lua chon:");
                             sel=scanner.nextInt();
                             switch (sel){
                                 case 1:{
@@ -69,7 +65,7 @@ public class Main {
                                     String newKeyword="";
                                     do{
                                         try{
-                                            System.out.println("Nhap Slang Word:");
+                                            System.out.print("Nhap Slang Word:");
                                             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
                                             newKeyword=br.readLine();
                                             if (dictionary.findBySlangWord(newKeyword)!=null){
@@ -82,26 +78,26 @@ public class Main {
                                     }
                                     while(dictionary.findBySlangWord(newKeyword)!=null);
                                     Scanner newScanner=new Scanner(System.in);
-                                    System.out.println("Nhap nghia moi:");
+                                    System.out.print("Nhap nghia moi:");
                                     dictionary.removeSlangWord(keyword);
                                     dictionary.addNewSlangWord(newKeyword,newScanner.nextLine());
                                     break;
                                 }
                                 case 2:{
-                                    System.out.println("Nhap nghia moi:");
+                                    System.out.print("Nhap nghia moi:");
                                     Scanner newScanner=new Scanner(System.in);
                                     String newDefinition=newScanner.nextLine();
                                     sw.getValue().addDefinition(newDefinition);
                                     break;
                                 }
                                 default:{
-                                    System.out.println("Nhap sai lua chon");
+                                    System.out.println("Nhap sai lua chon!");
                                     break;
                                 }
                             }
                         }
                         else{
-                            System.out.println("Nhap nghia moi:");
+                            System.out.print("Nhap nghia moi:");
                             String newDefinition=scanner.nextLine();
                             SlangDefinition newDefList=new SlangDefinition();
                             newDefList.addDefinition(newDefinition);
@@ -112,7 +108,7 @@ public class Main {
                     }
                     case 5:{
                         Scanner scanner=new Scanner(System.in);
-                        System.out.println("Nhap slang word muon edit:");
+                        System.out.print("Nhap slang word muon edit:");
                         String keyword=scanner.nextLine();
                         dictionary.updateSlangWord(keyword);
                         break;
@@ -120,18 +116,95 @@ public class Main {
                     }
                     case 6:{
                         Scanner scanner=new Scanner(System.in);
-                        System.out.println("Nhap slang word muon xoa:");
+                        System.out.print("Nhap slang word muon xoa:");
                         String keyword=scanner.nextLine();
                         while (dictionary.findBySlangWord(keyword)==null){
                             System.out.println("Slang word khong ton tai!");
-                            System.out.println("Nhap lai slang word:");
+                            System.out.print("Nhap lai slang word:");
                             Scanner sn=new Scanner(System.in);
                             keyword=sn.nextLine();
                         }
                         dictionary.removeSlangWord(keyword);
                         break;
                     }
+                    case 7:{
+                        dictionary.readFile("default.txt");
+                        break;
+                    }
+                    case 8:{
+                        SlangWord slangWord=dictionary.getRandomSlangWord();
+                        System.out.println(slangWord.getWord()+":"+slangWord.getDefinition().getListDefinitions());
+                        break;
+                    }
+                    case 9:{
+                        Random gen=new Random();
+                        String answerInput = null;
+                        int answerIndex = gen.nextInt(4);
+                        List<SlangWord> answerList=dictionary.getRandomList();
+                        SlangWord answer = answerList.get(answerIndex);
+                        System.out.println(answer.getWord()+":");
+                        System.out.println("A:"+answerList.get(0).getDefinition().getListDefinitions());
+                        System.out.println("B:"+answerList.get(1).getDefinition().getListDefinitions());
+                        System.out.println("C:"+answerList.get(2).getDefinition().getListDefinitions());
+                        System.out.println("D:"+answerList.get(3).getDefinition().getListDefinitions());
+                        System.out.println("Nhap lua chon:");
+                        Scanner scanner=new Scanner(System.in);
+                        String sel=scanner.nextLine();
+                        if (answerIndex==0){
+                            answerInput="A";
+                        }
+                        else if (answerIndex==1){
+                            answerInput="B";
+                        }else if (answerIndex==2){
+                            answerInput="C";
+                        }
+                        else if (answerIndex==3){
+                            answerInput="D";
+                        }
+                        if (sel.equals(answerInput)){
+                            System.out.println("Chinh xac!");
+                        }else{
+                            System.out.println("Sai!");
+                            System.out.println("Dap an dung la: "+answerInput);
+                        }
+                        break;
+                    }
+                    case 10:{
+                        Random gen=new Random();
+                        String answerInput = null;
+                        int answerIndex = gen.nextInt(4);
+                        List<SlangWord> answerList=dictionary.getRandomList();
+                        SlangWord answer = answerList.get(answerIndex);
+                        System.out.println("Slang word co nghia la \""+answer.getDefinition().getListDefinitions()+"\":");
+                        System.out.println("A:"+answerList.get(0).getWord());
+                        System.out.println("B:"+answerList.get(1).getWord());
+                        System.out.println("C:"+answerList.get(2).getWord());
+                        System.out.println("D:"+answerList.get(3).getWord());
+                        System.out.println("Nhap lua chon:");
+                        Scanner scanner=new Scanner(System.in);
+                        String sel=scanner.nextLine();
+                        if (answerIndex==0){
+                            answerInput="A";
+                        }
+                        else if (answerIndex==1){
+                            answerInput="B";
+                        }else if (answerIndex==2){
+                            answerInput="C";
+                        }
+                        else if (answerIndex==3){
+                            answerInput="D";
+                        }
+                        if (sel.equals(answerInput)){
+                            System.out.println("Chinh xac!");
+                        }else{
+                            System.out.println("Sai!");
+                            System.out.println("Dap an dung la: "+answerInput);
+                        }
+                        break;
+
+                    }
                 }
+                System.out.println("---------------------------------------------\n");
             }while (selection<=10&&selection>=1);
         }
         public static void printMenu(){
@@ -143,8 +216,8 @@ public class Main {
             System.out.println("Chon 6 de delete 1 slang word");
             System.out.println("Chon 7 de reset ve danh sach slang word goc");
             System.out.println("Chon 8 de random 1 slang word");
-            System.out.println("Chon 9 de thuc hien chuong trinh do slang word");
-            System.out.println("Chon 10 de thuc hien chuong trinh do definition");
+            System.out.println("Chon 9 de thuc hien chuong trinh do definition");
+            System.out.println("Chon 10 de thuc hien chuong trinh do slang word");
         }
 
     }

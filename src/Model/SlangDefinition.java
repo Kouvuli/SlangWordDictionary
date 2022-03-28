@@ -18,10 +18,14 @@ public class SlangDefinition {
         this.definitions = definitions;
     }
     public void addDefinition(String def){
-        definitions.add(def);
+        definitions.add(def.trim());
+    }
+    public void overwriteDefinition(String def){
+        definitions.clear();
+        definitions.add(def.trim());
     }
     public String getListDefinitions(){
-        return String.join("|", definitions);
+        return String.join("| ", definitions);
     }
     public boolean isContain(String keyword){
         for (String s:definitions) {

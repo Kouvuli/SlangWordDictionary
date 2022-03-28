@@ -28,7 +28,7 @@ public class HistoryList {
         for (History word: wordList) {
             word.printHistory();
         }
-        System.out.println("\n\n\nDefinitions:");
+        System.out.println("\n\nDefinitions:");
         for (History word: definitionList) {
             word.printHistory();
         }

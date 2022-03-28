@@ -3,7 +3,7 @@ import java.io.*;
 import java.util.*;
 
 public class SlangWordList {
-//    List<SlangWord> list;
+    //    List<SlangWord> list;
     HashMap<String,SlangDefinition> dictionary;
     HistoryList historyList;
 
@@ -73,7 +73,13 @@ public class SlangWordList {
                 for (String s:str[1].split("\\|")) {
                     def.addDefinition(s);
                 }
-                dictionary.put(word,def);
+                if (!dictionary.containsKey(word)){
+                    dictionary.put(word,def);
+                }
+                else{
+                    System.out.println(word);
+                }
+
 //                list.add(sl);
             }
             fr.close();
@@ -82,6 +88,32 @@ public class SlangWordList {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+    public void writeFile(String file_name){
+        File fout=new File(file_name);
+        BufferedWriter bw=null;
+        try{
+            bw=new BufferedWriter(new FileWriter(fout));
+            for (Map.Entry<String, SlangDefinition> entry : dictionary.entrySet()) {
+
+                String key= entry.getKey();
+                SlangDefinition value=entry.getValue();
+                bw.write(key+"`"+value.getListDefinitions());
+                bw.newLine();
+            }
+            bw.flush();
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+
+            try {
+
+                // always close the writer
+                bw.close();
+            }
+            catch (Exception e) {
+            }
         }
     }
     public void updateSlangWord(String keyword){

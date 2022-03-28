@@ -149,7 +149,9 @@ public class Main {
                     break;
                 }
                 case 7:{
+                    dictionary.getDictionary().clear();
                     dictionary.readFile("data/default.txt");
+                    dictionary.writeFile("data/slang.txt");
                     break;
                 }
                 case 8:{

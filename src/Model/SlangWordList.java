@@ -76,9 +76,6 @@ public class SlangWordList {
                 if (!dictionary.containsKey(word)){
                     dictionary.put(word,def);
                 }
-                else{
-                    System.out.println(word);
-                }
 
 //                list.add(sl);
             }
